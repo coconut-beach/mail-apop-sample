@@ -202,7 +202,7 @@ public class APOPSampleTest {
     /**
      * access() 下記のようなメッセージ2件のケース.
      *
-     * msg1 マルチパート 0) text/plain, 1) text/html, 2) application/pdf
+     * msg1 マルチパート 0) text/plain, 1) text/html, 2) application/xml
      * msg2 シングルパート
      */
 
@@ -259,7 +259,7 @@ public class APOPSampleTest {
 
         BodyPart body2 = Mockito.mock(BodyPart.class);
         Mockito.when(
-            body2.getContentType()).thenReturn("application/pdf part ");
+            body2.getContentType()).thenReturn("application/xml part ");
         //Mockito.when(
         //    body2.getContent()).thenReturn("ダミー unknown/dumy body 本体");
         multi.addBodyPart(body2);

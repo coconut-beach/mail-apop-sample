@@ -28,7 +28,7 @@ import jakarta.mail.MessagingException;
  * https://jakarta.ee/specifications/mail/2.1/jakarta-mail-spec-2.1.pdf</a>
  *</p>
  *<p>
- * 本プロジェクトをビルドしてできる check-apop-1.x.x.jar の他に
+ * 本プロジェクトをビルドしてできる mail-apop-sample-1.x.x.jar の他に
  * 実行するには次の依存jar がクラスパス上に必要です。
  *</p>
  *<ol>
@@ -80,8 +80,9 @@ public class APOPSample {
     }
 
     /**
-     * APOP認証でpop3 サーバに接続します.
+     * pop3 サーバに接続します.
      * <p>
+     * useAPOP がtrue の場合はAPOP認証を使用します。<br>
      * 本メソッドは副作用としてインスタンス変数pop3Store とmyMailBox
      * に値をセットします。
      * </p>
