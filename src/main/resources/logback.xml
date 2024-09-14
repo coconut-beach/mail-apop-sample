@@ -1,86 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration>
 <configuration debug="true" scan="false">
-	<!--
-	 debug 属性はlogback の設定ファイルを発見できたかどうか、設定ファイル の内容にエラーがないかどうかを出力してくれる
-	 logback-classic はscan 属性をtrue に設定すると設定ファイルの変更を 1分ごとに監視し、変化があれば動的に設定を再読み込みする
-	 logback の設定ファイルでは、タグ名の大文字・小文字は区別されない 
-	 logback のエラーレベルはTRACE, DEBUG, INFO, WARN, ERROR, ALL, OFF がある
-	 INHERITED またはNULL を指定すると祖先のレベルを継承する
-	 root にはINHERITED,NULL を指定できない
-	  プロパティ変数を定義し、ドル記号で参照することができる 
-	  参照するプロパティが設定ファイル中で定義されてない場合はJava のシステム プロパティとみなして参照される
-	  システムプロパティにも存在しない場合、環境変数として参照する 
-	  プロパティがどこにも定義されていなかった場合のデフォルト値を":-" で 区切って設定することができる
-	 logback-classic はアペンダーをclose()	しない
-	-->
+  <!--
+   debug 属性はlogback の設定ファイルを発見できたかどうか、設定ファイル の内容にエラーがないかどうかを出力してくれる
+   logback-classic はscan 属性をtrue に設定すると設定ファイルの変更を 1分ごとに監視し、変化があれば動的に設定を再読み込みする
+   logback の設定ファイルでは、タグ名の大文字・小文字は区別されない 
+   logback のエラーレベルはTRACE, DEBUG, INFO, WARN, ERROR, ALL, OFF がある
+   INHERITED またはNULL を指定すると祖先のレベルを継承する
+   root にはINHERITED,NULL を指定できない
+   プロパティ変数を定義し、ドル記号で参照することができる 
+   参照するプロパティが設定ファイル中で定義されてない場合はJava のシステム プロパティとみなして参照される
+   システムプロパティにも存在しない場合、環境変数として参照する 
+   プロパティがどこにも定義されていなかった場合のデフォルト値を":-" で 区切って設定することができる
+   logback-classic はアペンダーをclose()  しない
+  -->
 
-	<!-- 複数のear が同じファイルへログを出力する場合、オプションのcontextName でどのear が出力したログかを区別することができる -->
-	<contextName>mail-apop-sample</contextName>
+  <!-- 複数のear が同じファイルへログを出力する場合、オプションのcontextName でどのear が出力したログかを区別することができる -->
+  <contextName>mail-apop-sample</contextName>
 
-	<!-- プロパティを個別に設定する例 -->
-	<!-- <property name="LOGBACK_LOG_DIR" value="${config.log.dir}" /> -->
+  <!-- プロパティを個別に設定する例 -->
+  <!-- <property name="LOGBACK_LOG_DIR" value="${config.log.dir}" /> -->
 
-	<!-- プロパティを別ファイルからロードする例 -->
-	<!-- <property file="path1/path2/props.properties" /> -->
+  <!-- プロパティを別ファイルからロードする例 -->
+  <!-- <property file="path1/path2/props.properties" /> -->
 
-	<!-- プロパティをクラスパス上のファイルからロードする例 -->
-	<!-- <property resource="props.properties" /> -->
-
-
-	<!-- この場所にappender 横断的なフィルタをけかることができる。
-         例えば無数の同一メッセージの繰り返しを排除するDuplicateMessageFilter 
-         などがある -->
-	<!-- <turboFilter class="xxx.yyy.zzz" /> -->
-
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<target>System.out</target>
-
-		<!-- フィルタをかけて内容を見て出力するかどうかを絞ることができる -->
-		<!-- <filter class="xxx.yyy.zzz" /> -->
-
-		<encoder>
-			<!-- パターン 
-			  %r: 起動後ログイベントを生成するまでのミリ秒(%relativeも可) 
-			  %d: 日時 (%date も可) 
-			  %t: スレッド情報(パッケージ名、クラス名、メソッド名)(%thread も可)
-			  %le: ログレベル(%level も可)
-			  %lo: ロガー名(パッケージ名、クラス名など)(%logger も可)
-			  %msg: メッセージ本文 (%m も可)
-			  %file: ログを出力したソースファイル名(性能注意)
-			  %line: ログを出力したソースの行番号(性能注意) 
-			  %X{key:-defaultVal}: MDC 
-			  %contextName: コンテキスト名
-			  %n: 改行
-			-->
-			<pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%-5le] [%lo{36}] - %msg%n</pattern>
-		</encoder>
-	</appender>
-
-	<appender name="LOGFILE" class="ch.qos.logback.core.FileAppender">
-		<file>${config.log.dir}/log.txt</file>
-		<encoder>
-			<charset>UTF-8</charset>
-			<pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%-5le] [%lo{36}] - %msg%n</pattern>
-		</encoder>
-	</appender>
+  <!-- プロパティをクラスパス上のファイルからロードする例 -->
+  <!-- <property resource="props.properties" /> -->
 
 
-	<!-- logger エレメントのadditivity 属性について
-        もしroot エレメントでSTDOUT を割り当て、logger エレメントでもSTDOUT 
-		を割り当てた場合、これが積み重なってSTDOUT へ同じメッセージが2回出力される
-        このような振る舞いを好まない場合、additivity 属性をfalse にセットする
+  <!-- この場所にappender 横断的なフィルタをかけることができる。
+       例えば無数の同一メッセージの繰り返しを排除するDuplicateMessageFilter などがある -->
+  <!-- <turboFilter class="xxx.yyy.zzz" /> -->
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.out</target>
+
+    <!-- フィルタをかけて内容を見て出力するかどうかを絞ることができる -->
+    <!-- <filter class="xxx.yyy.zzz" /> -->
+
+    <encoder>
+      <!-- パターン 
+        %r: 起動後ログイベントを生成するまでのミリ秒(%relativeも可) 
+        %d: 日時 (%date も可) 
+        %t: スレッド情報(パッケージ名、クラス名、メソッド名)(%thread も可)
+        %le: ログレベル(%level も可)
+        %lo: ロガー名(パッケージ名、クラス名など)(%logger も可)
+        %msg: メッセージ本文 (%m も可)
+        %file: ログを出力したソースファイル名(性能注意)
+        %line: ログを出力したソースの行番号(性能注意) 
+        %X{key:-defaultVal}: MDC 
+        %contextName: コンテキスト名
+        %n: 改行
       -->
+      <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%-5le] [%lo{36}] - %msg%n</pattern>
+    </encoder>
+  </appender>
 
-	<!-- <logger name="mypackage" level="DEBUG" additivity="false">
-           <appender-ref ref="STDOUT" />
-         </logger> -->
+  <appender name="LOGFILE" class="ch.qos.logback.core.FileAppender">
+    <file>${config.log.dir}/log.txt</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%-5le] [%lo{36}] - %msg%n</pattern>
+    </encoder>
+  </appender>
 
-	<!-- root エレメントにはlevel 属性のみ指定可能でname やadditivity は無効
-         root のlevel を省略した場合のデフォルトはDEBUG になる -->
-	<root level="DEBUG">
-		<!-- <appender-ref ref="LOGFILE" /> -->
-		<appender-ref ref="STDOUT" />
-	</root>
 
+  <!-- logger エレメントのadditivity 属性について
+       もしroot エレメントでSTDOUT を割り当て、logger エレメントでもSTDOUT 
+       を割り当てた場合、これが積み重なってSTDOUT へ同じメッセージが2回出力される
+       このような振る舞いを好まない場合、additivity 属性をfalse にセットする
+   -->
+
+  <!-- <logger name="mypackage" level="DEBUG" additivity="false">
+         <appender-ref ref="STDOUT" />
+       </logger>
+   -->
+
+  <!-- root エレメントにはlevel 属性のみ指定可能でname やadditivity は無効
+       root のlevel を省略した場合のデフォルトはDEBUG になる -->
+  <root level="DEBUG">
+    <!-- <appender-ref ref="LOGFILE" /> -->
+    <appender-ref ref="STDOUT" />
+  </root>
 </configuration>
